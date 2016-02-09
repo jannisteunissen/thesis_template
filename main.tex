@@ -1,0 +1,121 @@
+% A two-sided book
+\documentclass[11pt,twoside]{book}
+
+\usepackage{graphicx}
+
+% If you want to use "import" for your chapters (to have relative includes of
+% figures or other content), enable this line, and replace \input{directory/file} by
+% \import{directory}{file}
+% \usepackage{import}
+ 
+% This is only used for the example frontmatter
+\usepackage{tabularx}
+
+% To generate PDF hyperlinks (in blue)
+\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
+bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
+colorlinks,linkcolor={blue},citecolor={blue},urlcolor={red},
+pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
+
+% Font related packages
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Math font packages (add/replace by your favorites)
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+
+% For postscript drawings (if you want to include them)
+\usepackage{pstricks}
+
+% For links and doi's
+\usepackage{url}
+\usepackage{doi}
+
+% For references (you could also use biblatex)
+\usepackage[square, numbers, comma, sort&compress]{natbib}
+
+% Language / hyphenation
+\usepackage[english]{babel}
+
+% This sets the margins
+\usepackage[top=2.5cm, left=1.75cm, right=1.75cm, bottom=2.0cm,%
+bindingoffset=7.5mm, headheight=15pt, paper=b5paper]{geometry}
+
+% Set the headers and footers for all pages. See the fancyhdr documentation if
+% you want to change this.
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[CE]{\bfseries\nouppercase{\rightmark}} % Section in the right on even pages
+\fancyhead[CO]{\bfseries\nouppercase{\leftmark}} % Chapter in the left on odd pages
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+% This command can be used to make sure new start on the right page
+\newcommand{\tclear}{\clearpage{\pagestyle{empty}\cleardoublepage}}
+
+% Change these
+\newcommand{\ttitle}{Another Thesis Template}
+\newcommand{\tauthor}{John Doe}
+
+% PDF meta-data
+\hypersetup{urlcolor=blue, colorlinks=true}
+\hypersetup{pdftitle=\ttitle}
+\hypersetup{pdfsubject=}
+\hypersetup{pdfauthor=\tauthor}
+\hypersetup{pdfkeywords=}
+
+% This defines a new environment "chapabstract" (chapter abstract)
+\makeatletter
+\newenvironment{chapabstract}
+{\begin{center}\begin{minipage}{0.9\textwidth}}
+{\end{minipage}\end{center}}
+\makeatother
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\frontmatter
+
+\input{./chapters/frontmatter.tex}
+
+\tableofcontents
+
+\tclear
+
+\mainmatter
+
+\input{./chapters/chapter_1.tex}
+\tclear
+
+\input{./chapters/chapter_2.tex}
+\tclear
+
+\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+
+\appendix
+
+\input{./chapters/appendix.tex}
+\tclear
+
+\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+
+\backmatter
+
+% This style file only shows doi's, no url's
+\bibliographystyle{unsrtnat_nourl}
+\bibliography{bib_example}
+
+\input{./chapters/acknowledgements.tex}
+\tclear
+
+\end{document}
+
