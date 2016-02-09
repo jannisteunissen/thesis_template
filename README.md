@@ -1,2 +1,2 @@
 # thesis_template
-Template for (PhD) thesis
+Template for a (PhD) thesis
